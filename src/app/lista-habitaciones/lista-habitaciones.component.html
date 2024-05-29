@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="contenedor-imagen">
+        <img src="../../assets/img/imagen-habitaciones.jpg" class="imagen img-fluid" alt="Imagen contacto">
+        <div class="texto-imagen">
+            <p class="text-center">Habitaciones disponibles</p>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
+<br>
+<div *ngIf="habitaciones && habitaciones.length > 0; else noHabitaciones" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Código de habitación</th>
+                <th>Número</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Hotel</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let habitacion of habitaciones">
+                <td><i>{{ habitacion.id_habitacion }}</i></td>
+                <td><i>{{ habitacion.numero }}</i></td>
+                <td><i>{{ habitacion.tipo }}</i></td>
+                <td><i>{{ habitacion.precio }}</i></td>
+                <td><i>{{ habitacion.nombre_hotel }}</i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #noHabitaciones>
+    <p class="text-center">No hay habitaciones disponibles</p>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-8">
+        <form (ngSubmit)="onSubmit()" #reservaForm="ngForm">
+          <fieldset class="form-group">
+            <div class="col-sm-12">
+              <label class="control-label" for="habitacion">Habitación</label>
+              <input type="number" class="form-control" required [(ngModel)]="reserva.id_habitacion" name="habitacion">
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="col-sm-12">
+              <label class="control-label" for="fecha_entrada">Fecha entrada</label>
+              <input type="date" class="form-control" required [(ngModel)]="reserva.fecha_entrada" name="fecha_entrada">
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="col-sm-12">
+              <label class="control-label" for="fecha_salida">Fecha salida</label>
+              <input type="date" class="form-control" required [(ngModel)]="reserva.fecha_salida" name="fecha_salida">
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary" [disabled]="!reservaForm.form.valid">Aceptar</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  

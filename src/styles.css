@@ -1,1 +1,307 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    color: black;
+    background-image: url(../src/assets/imagen-fondo.png)
+}
+
+h2 {
+    font-weight: bold;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item a.nav-link {
+    color: rgb(83, 58, 12);
+}
+
+.navbar-nav .nav-item a.nav-link:hover {
+    transition: color;
+    color: rgb(61, 43, 9);
+}
+
+#div-dropdown {
+    position: relative;
+    /* Posiciona el menú dropdown debajo del elemento li 'Catálogo' */
+}
+
+h4 {
+    text-align: center;
+}
+
+h3+p {
+    font-size: 0.85em;
+}
+
+#logo {
+    max-height: 8em;
+}
+
+#a-logo.navbar-brand {
+    margin-right: 25%;
+}
+
+li {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-nav li {
+    margin-right: 3em;
+}
+
+.carousel .carousel-item {
+    max-height: 25em;
+}
+
+.carousel-indicators li {
+    margin-right: 2.5%;
+    border: 1px solid black;
+    margin-bottom: 1em;
+    border-radius: 50%;
+    width: 0.75em;
+    height: 0.75em;
+    background-color: white;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #051E3D;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#div-principal {
+    max-width: 1440px;
+    background-color: white;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    box-shadow: 12px 0 15px -4px rgba(0, 0, 0, 0.2), -12px 0 15px -4px rgba(0, 0, 0, 0.2);
+}
+
+#div-iconos {
+    background-color: #00e5e6;
+    box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.8);
+    padding: 2.5em;
+}
+
+#div-iconos a {
+    margin-right: 1em;
+}
+
+#div-copyright {
+    background-color: #02b1b1;
+    padding-top: 0.75em;
+    padding-left: 1.5em;
+}
+
+#p-copyright {
+    color: #EEEEEF;
+}
+
+#div-labor {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#div-servicios-titulo {
+    font-style: italic;
+    margin-left: 5%;
+}
+
+#img-edificio-securitec {
+    float: right;
+    border: 1px solid black;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.5);
+    margin-left: 2.5%;
+}
+
+#div-preguntas-frecuentes,
+#div-atencion-cliente {
+    color: white;
+    font-size: 2em;
+    font-weight: bolder;
+    text-shadow: 2px 2px 5px black;
+    text-align: center;
+}
+
+.imagen {
+    display: block;
+}
+
+.contenedor-imagen {
+    position: relative;
+    display: inline-block;
+}
+
+/* Posiciona el texto en la parte central, delante de la imagen */
+.texto-imagen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 150%;
+    text-shadow: 2px 2px 5px black;
+    color: white;
+    font-weight: bolder;
+}
+
+#p-numero-telefono {
+    font-weight: lighter;
+}
+
+#acordeon {
+    margin-left: 3%;
+    margin-bottom: 7.5%;
+}
+
+.card {
+    border: none;
+    background-color: white !important;
+}
+
+.card-header {
+    border: none;
+    background-color: white !important;
+}
+
+.card-body {
+    border: 1px solid grey;
+    border-radius: 1em;
+    background-color: #fafafa;
+    margin-right: 5%;
+}
+
+.btn-acordeon {
+    font-weight: bold;
+    font-size: 0.75em;
+    color: #051E3D;
+    width: 100%;
+    text-align: left;
+}
+
+.btn-link:hover,
+.btn-link,
+.btn-link:focus {
+    text-decoration: none;
+}
+
+.dropdown-toggle::after {
+    vertical-align: middle;
+    /* Alinea la flecha del dropdown en el medio */
+}
+
+.navbar-nav .nav-item.show .nav-link.dropdown-toggle::after {
+    transform: rotate(180deg);
+    /* Animación de rotar 180 grados cuando se activa el dropdown 'Catálogo' */
+}
+
+.navbar-nav .nav-link.dropdown-toggle::after {
+    transition: transform 0.3s ease;
+    /* Suaviza la animación */
+}
+
+.cruceta::before {
+    content: "+";
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 5px;
+    transition: transform 0.2s ease;
+    /* Agrega una transición para suavizar el cambio */
+}
+
+/* Agrega estilos específicos cuando el acordeón está activo */
+.btn-acordeon[aria-expanded="true"] .cruceta::before {
+    transform: rotate(135deg);
+    /* Rota 45 grados cuando está activo */
+    content: "+";
+    /* Cambia el contenido a '-' cuando está activo */
+}
+
+.formulario {
+    padding: 2.5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    box-shadow: inset 4px 4px 9px -7px rgba(0, 0, 0, 0.8), inset -4px -4px 9px -7px rgba(0, 0, 0, 0.8);
+    background-color: white;
+}
+
+#opt-ninguna {
+    color: rgb(178, 178, 178);
+}
+
+#btn-enviar,
+.btn-compra {
+    border-color: #408E2F;
+    background-color: #408E2F;
+}
+
+#p-asterisco {
+    font-size: 0.75em;
+    color: rgb(149, 149, 149);
+}
+
+#spn-titulo-labor {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2em;
+}
+
+.div-producto {
+    padding: 0;
+    border: 1px solid black;
+    box-shadow: 5px 7px 8px #888888;
+    background-color:rgb(134, 89, 46);
+}
+
+.contenido-producto {
+    text-decoration: none;
+    color: #EEEEEF;
+    margin-top: 1.5%;
+}
+
+.img-producto {
+    border: 1px solid black;
+}
+
+.btn-compra:hover {
+    border-color: #377927;
+    background-color: #377927;
+    /* Oscurecer el verde cuando el puntero pasa por encima del botón */
+}
+
+.btn-compra:active,
+.btn-compra:focus {
+    background-color: #377927 !important;
+    border-color: #377927 !important;
+    /* Oscurecer el verde cuando el puntero hace click sobre el botón */
+}
+
+#formulario-compra {
+    color: black;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-striped {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-striped th,
+.table-striped td {
+    text-align: center;
+    white-space: nowrap;
+}

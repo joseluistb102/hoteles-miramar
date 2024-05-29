@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="contenedor-imagen">
+    <img src="../../assets/img/imagen-reservas.jpg" class="imagen img-fluid" alt="Imagen contacto">
+    <div class="texto-imagen">
+      <p class="text-center">Reserva de Habitaciones</p>
+    </div>
+  </div>
+</div>
+<br>
+<hr>
+<form class="form-inline w-100">
+  <div class="form-group col-sm-12 text-right">
+    <a class="btn btn-primary" [routerLink]="['/reservas/agregar']">Nueva reserva</a>
+  </div>
+</form>
+<br>
+<div *ngIf="reservas && reservas.length > 0; else noReservas" class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nº Reserva</th>
+        <th>Código de habitación</th>
+        <th>Fecha de entrada</th>
+        <th>Fecha de salida</th>
+        <th>ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td><i>{{ reserva.id_reserva }}</i></td>
+        <td><i>{{ reserva.id_habitacion }}</i></td>
+        <td><i>{{ reserva.fecha_entrada | date:'dd-MM-yyyy' }}</i></td>
+        <td><i>{{ reserva.fecha_salida | date:'dd-MM-yyyy' }}</i></td>
+        <td>
+          <a class="btn btn-info btn-sm" [routerLink]="['/reservas/editar/', reserva.id_reserva]">Editar</a>
+          <a class="btn btn-danger btn-sm" (click)="borrarReserva(reserva.id_reserva)">Borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noReservas>
+  <p class="text-center">No hay reservas</p>
+</ng-template>
