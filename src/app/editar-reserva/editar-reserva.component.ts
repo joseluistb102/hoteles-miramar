@@ -25,7 +25,6 @@ export class EditarReservaComponent implements OnInit{
   ngOnInit(): void {
     this.id_reserva = this.route.snapshot.params['id_reserva']
     if (this.id_reserva) {
-      console.log("EDITAR");
       this.reservaService.obtenerReserva(this.id_reserva).subscribe(data => {
         this.reserva = data[0]
       })
@@ -33,8 +32,6 @@ export class EditarReservaComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log('onSubmit');
-
     if (this.reserva.id_reserva) {
       this.reservaService.actualizarReserva(this.reserva).subscribe(data => {
         alert(data)

@@ -44,7 +44,6 @@ app.get('/', (req, res) => {
     res.send('API')
 })
 
-// Endpoint para autenticación de usuario
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
@@ -97,30 +96,6 @@ app.post('/users', (req, res) => {
     });
 });
 
-/*
-app.get('/users', (req, res) => {
-    const { email } = req.query;
-    if (!email) {
-        return res.status(400).json({ error: "El parámetro 'email' es requerido" });
-    }
-
-    const query = `SELECT * FROM usuario WHERE email = ?`;
-
-    conexion.query(query, [email], (error, resultado) => {
-        if (error) {
-            console.error(error.message);
-            return res.status(500).json({ error: "Error en la consulta a la base de datos" });
-        }
-
-        if (resultado.length > 0) {
-            res.json(resultado);
-        } else {
-            res.json({ message: `No hay ningún usuario con ese email` });
-        }
-    });
-});
-*/
-
 app.get('/habitaciones', (req, res) => {
     const query = `SELECT * FROM habitacion WHERE disponible = 1`
     conexion.query(query, (error, resultado) => {
@@ -169,59 +144,6 @@ app.post('/reservas/agregar', (req, res) => {
     conexion.query(checkQuery, [id_habitacion], (error, resultados) => {
         if (error) {
             console.error(error.message);
-            return res.json({ error: 'Error al verificar la disponibilidad de la habitación' });
-        }
-
-        if (resultados.length === 0) {
-            return res.json({ error: 'La habitación no existe' });
-        }
-
-        if (!resultados[0].disponible) {
-            return res.json({ error: 'La habitación no está disponible' });
-        }
-
-        const insertQuery = `INSERT INTO reserva (id_habitacion, fecha_entrada, fecha_salida) VALUES (?, ?, ?)`;
-        const params = [id_habitacion, fecha_entrada, fecha_salida];
-
-        conexion.query(insertQuery, params, (error, resultado) => {
-            if (error) {
-                console.error(error.message);
-                return res.json({ error: 'La habitación no está disponible' });
-            }
-
-            const updateQuery = `UPDATE habitacion SET disponible = 0 WHERE id_habitacion = ?`;
-            conexion.query(updateQuery, [id_habitacion], (error, resultado) => {
-                if (error) {
-                    console.error(error.message);
-                    return res.json({ error: 'Error al actualizar la disponibilidad de la habitación' });
-                }
-
-                res.json('Se ha creado la reserva correctamente');
-            });
-        });
-    });
-});
-
-
-app.put('/reservas/actualizar/:id_reserva', (req, res) => {
-    const { id_reserva } = req.params
-    const { id_habitacion, fecha_entrada, fecha_salida } = req.body
-
-    const query = `UPDATE reserva SET id_habitacion='${id_habitacion}', fecha_entrada='${fecha_entrada}', fecha_salida='${fecha_salida}' WHERE id_reserva='${id_reserva}'`;
-    conexion.query(query, (error, resultado) => {
-        if (error) return console.error(error.message)
-
-        res.json(`Se ha actualizado la reserva correctamente`)
-    })
-})
-
-app.post('/reservas/agregar', (req, res) => {
-    const { id_habitacion, fecha_entrada, fecha_salida } = req.body;
-
-    const checkQuery = `SELECT disponible, nombre_hotel FROM habitacion WHERE id_habitacion = ?`;
-    conexion.query(checkQuery, [id_habitacion], (error, resultados) => {
-        if (error) {
-            console.error(error.message);
             return res.status(500).json('Error al verificar la disponibilidad de la habitación');
         }
 
@@ -229,9 +151,8 @@ app.post('/reservas/agregar', (req, res) => {
             return res.status(400).json('La habitación no está disponible o no existe');
         }
 
-        const nombre_hotel = resultados[0].nombre_hotel;
-        const insertQuery = `INSERT INTO reserva (id_habitacion, fecha_entrada, fecha_salida, nombre_hotel) VALUES (?, ?, ?, ?)`;
-        const params = [id_habitacion, fecha_entrada, fecha_salida, nombre_hotel];
+        const insertQuery = `INSERT INTO reserva (id_habitacion, fecha_entrada, fecha_salida) VALUES (?, ?, ?)`;
+        const params = [id_habitacion, fecha_entrada, fecha_salida];
 
         conexion.query(insertQuery, params, (error, resultado) => {
             if (error) {
@@ -251,7 +172,6 @@ app.post('/reservas/agregar', (req, res) => {
         });
     });
 });
-
 
 app.put('/reservas/actualizar/:id_reserva', (req, res) => {
     const { id_reserva } = req.params;
@@ -274,7 +194,6 @@ app.put('/reservas/actualizar/:id_reserva', (req, res) => {
 app.delete('/reservas/borrar/:id_reserva', (req, res) => {
     const { id_reserva } = req.params;
 
-    // Primero, obtenemos el id_habitacion de la reserva
     const getHabitacionQuery = `SELECT id_habitacion FROM reserva WHERE id_reserva = ?`;
     conexion.query(getHabitacionQuery, [id_reserva], (error, resultados) => {
         if (error) {
@@ -288,7 +207,6 @@ app.delete('/reservas/borrar/:id_reserva', (req, res) => {
 
         const id_habitacion = resultados[0].id_habitacion;
 
-        // Luego, eliminamos la reserva
         const deleteQuery = `DELETE FROM reserva WHERE id_reserva = ?`;
         conexion.query(deleteQuery, [id_reserva], (error, resultado) => {
             if (error) {
@@ -296,7 +214,6 @@ app.delete('/reservas/borrar/:id_reserva', (req, res) => {
                 return res.status(500).json({ error: 'Error al eliminar la reserva' });
             }
 
-            // Finalmente, actualizamos la disponibilidad de la habitación
             const updateQuery = `UPDATE habitacion SET disponible = 1 WHERE id_habitacion = ?`;
             conexion.query(updateQuery, [id_habitacion], (error, resultado) => {
                 if (error) {

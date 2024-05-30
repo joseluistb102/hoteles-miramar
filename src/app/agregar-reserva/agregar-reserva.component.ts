@@ -29,8 +29,6 @@ export class AgregarReservaComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('onSubmit');
-    console.log('crear');
     this.reservaService.agregarReserva(this.reserva).subscribe(
       data => {
         if (data.error) {
